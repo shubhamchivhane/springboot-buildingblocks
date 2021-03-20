@@ -18,10 +18,10 @@ public class HelloWorldController {
 	@GetMapping("/getUser")
 	public UserDetails getUser()
 	{
-		UserDetails user=new UserDetails();
-		user.setFirstName("Shubham");
-		user.setLastName("Chivhane");
-		user.setCity("Hydrabad");
-		return user;
+//		UserDetails user=new UserDetails();
+//		user.setFirstName("Shubham");
+//		user.setLastName("Chivhane");
+//		//user.setCity("Hydrabad");
+		return null;
 	}
 }
