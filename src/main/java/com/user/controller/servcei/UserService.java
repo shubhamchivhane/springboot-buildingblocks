@@ -1,6 +1,7 @@
 package com.user.controller.servcei;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.user.model.UserDetails;
 
@@ -8,7 +9,7 @@ import com.user.model.UserDetails;
 public interface UserService {
 	
 	UserDetails saveUser(UserDetails user);
-	UserDetails getUserById(int id);
+	Optional<UserDetails> getUserById(int id);
 	UserDetails getUserByName(String name);
 	List<UserDetails> getAllUser();
 	UserDetails updateUserById(int id, UserDetails user);
