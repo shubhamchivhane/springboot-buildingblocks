@@ -3,6 +3,8 @@ package com.user.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.user.controller.servcei.UserService;
 import com.user.exception.UserExistException;
+import com.user.exception.UserNameNotFoundException;
 import com.user.exception.UserNotFoundException;
 import com.user.model.UserDetails;
 
@@ -27,7 +30,7 @@ public class UserController {
 	public UserService service;
 
 	@PostMapping
-	private UserDetails saveUser(@RequestBody UserDetails user)
+	private UserDetails saveUser(@Valid @RequestBody UserDetails user)
 	{ 
 		try {
 			return service.saveUser(user);
@@ -53,10 +56,13 @@ public class UserController {
 		}
 	}
 	
-	@GetMapping("/{name}")
-	private UserDetails getUserbyName(@PathVariable String name)
+	@GetMapping("/byusername/{name}")
+	private UserDetails getUserbyName(@PathVariable String name) throws UserNameNotFoundException
 	{
-		return service.getUserByName(name);
+		UserDetails user= service.getUserByName(name);
+		if(user == null)
+			throw new UserNameNotFoundException("Username "+name+" not found ");
+		return user;
 	}
 	
 	@PutMapping("/{id}")

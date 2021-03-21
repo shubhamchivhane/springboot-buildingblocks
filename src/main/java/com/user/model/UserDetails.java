@@ -5,8 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import lombok.Data;
 
@@ -20,6 +21,7 @@ public class UserDetails {
 	@Column(name="user_id")
 	private Integer id;
 	
+	@Size(min=2,message="First name atleast have minimum two character")
 	@Column(name="first_name")
 	private String firstName;
 	
@@ -29,6 +31,7 @@ public class UserDetails {
 	@Column(name="role")
 	private String role;
 	
+	@NotEmpty(message="Username is mandatory ,Please provide username")
 	@Column(name="username")
 	private String userName;
 	
